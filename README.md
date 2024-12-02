@@ -1,17 +1,17 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+The Todo App is an app where a user can add tasks that need to be completed with the option of adding a due date.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+Once the added tasks are completed, the user is able to check mark them and delete them.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+HTML, CSS and Javascript were used to give the app functionality
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+[Todo App project](https://thato-a.github.io/se_project_todo-app/)
