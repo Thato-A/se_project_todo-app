@@ -44,7 +44,6 @@ class Todo {
       todoDate.textContent = dueDate;
     }
 
-    debugger;
     this._generateCheckboxEl();
     this._setEventListeners();
 
