@@ -18,7 +18,7 @@ class Popup {
   close() {
     this._popupElement.classList.remove("popup_visible");
     console.log("close method is called");
-    //remove the esc listener
+    document.removeEventListener("keyup", this._handleEscapeClose);
   }
 
   setEventListeners() {

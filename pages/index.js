@@ -15,9 +15,9 @@ const todosList = document.querySelector(".todos__list");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: (data) => {
-    const name = data.name;
-    const dateInput = data.date;
+  handleFormSubmit: (inputvalues) => {
+    const name = inputvalues.name;
+    const dateInput = inputvalues.date;
     let date;
 
     if (dateInput) {
@@ -46,8 +46,20 @@ function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
 }
 
+function handleDelete(completed) {
+  if (completed) {
+    todoCounter.updateCompleted(false);
+  }
+  todoCounter.updateTotal(false);
+}
+
+const renderTodo = (item) => {
+  const todo = generateTodo(item);
+  section.addItem(todo);
+};
+
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", handleCheck);
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
 
   return todoElement;
@@ -55,16 +67,18 @@ const generateTodo = (data) => {
 
 const section = new Section({
   items: initialTodos,
-  renderer: (item) => {
-    const element = generateTodo(item);
-    section.addItem(element);
-  },
+  renderer: renderTodo,
+
+  //(item) => {
+  //const todo = generateTodo(item);
+  //section.addItem(todo);
+  //},
   // generate todo item, add it to the todolist, refer to the foreach loop in this file
 
   containerSelector: ".todos__list",
 });
+
 section.renderItem();
-//remember to call section instances renderItems method
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
@@ -73,14 +87,9 @@ addTodoButton.addEventListener("click", () => {
 //addTodoForm.addEventListener("submit", (evt) => {
 //evt.preventDefault();
 
-const renderTodo = (item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-};
-
-initialTodos.forEach((item) => {
-  renderTodo(item);
-}); //make sure to remove this after render items function is complete
+//initialTodos.forEach((item) => {
+//renderTodo(item);
+//}); //make sure to remove this after render items function is complete
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
