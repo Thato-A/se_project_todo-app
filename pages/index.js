@@ -29,7 +29,7 @@ const addTodoPopup = new PopupWithForm({
 
     const id = uuidv4();
     const values = { name, date, id };
-    const todo = generateTodo(values); //remove once additem is complete
+    const todo = generateTodo(values);
     section.addItem(todo);
 
     todoCounter.updateTotal(true);
@@ -67,13 +67,8 @@ const generateTodo = (data) => {
 
 const section = new Section({
   items: initialTodos,
-  renderer: renderTodo,
 
-  //(item) => {
-  //const todo = generateTodo(item);
-  //section.addItem(todo);
-  //},
-  // generate todo item, add it to the todolist, refer to the foreach loop in this file
+  renderer: renderTodo,
 
   containerSelector: ".todos__list",
 });
@@ -83,13 +78,6 @@ section.renderItem();
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
-
-//addTodoForm.addEventListener("submit", (evt) => {
-//evt.preventDefault();
-
-//initialTodos.forEach((item) => {
-//renderTodo(item);
-//}); //make sure to remove this after render items function is complete
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();

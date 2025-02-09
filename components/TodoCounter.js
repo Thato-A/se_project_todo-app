@@ -17,6 +17,8 @@ class TodoCounter {
   };
 
   updateTotal = (increment) => {
+    console.log("total");
+    console.log(increment);
     if (increment) {
       this._total += 1;
     } else {
